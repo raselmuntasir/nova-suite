@@ -35,10 +35,10 @@ export default function LandingPage() {
             <span className="text-xl font-bold tracking-tight">Nova Suite</span>
           </div>
           <div className="flex items-center gap-4">
-            <Button variant="ghost" asChild>
+            <Button variant="ghost" >
               <Link to="/admin">Admin Login</Link>
             </Button>
-            <Button className="rounded-full px-6 shadow-lg shadow-primary/20" asChild>
+            <Button className="rounded-full px-6 shadow-lg shadow-primary/20" >
               <Link to="/tenant/demo-merchant">Merchant Login</Link>
             </Button>
           </div>

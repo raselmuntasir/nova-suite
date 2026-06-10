@@ -7,36 +7,20 @@ import { fetchTenants, suspendTenant, reactivateTenant, type Tenant } from '../.
 
 export default function AdminDashboardPage() {
   const [tenants, setTenants] = useState<Tenant[]>([])
-  const [loading, setLoading] = useState(false)
-
+  
   useEffect(() => {
     async function load() {
-      setLoading(true)
-      try {
+            try {
         const data = await fetchTenants()
         setTenants(data)
       } catch (err) {
         console.error(err)
       }
-      setLoading(false)
-    }
+          }
     load()
   }, [])
 
-  const handleToggleStatus = async (id: string, status: string) => {
-    try {
-      if (status === 'active') {
-        await suspendTenant(id)
-      } else {
-        await reactivateTenant(id)
-      }
-      const data = await fetchTenants()
-      setTenants(data)
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
+  
   const getStatusColor = (status: string) => {
     switch(status) {
       case 'active': return 'bg-green-100 text-green-800'
@@ -111,11 +95,11 @@ export default function AdminDashboardPage() {
               <tbody className="[&_tr:last-child]:border-0">
                 {tenants.map((tenant) => (
                   <tr key={tenant.id} className="border-b transition-colors hover:bg-muted/50">
-                    <td className="p-6 align-middle font-medium">{tenant.name}</td>
-                    <td className="p-6 align-middle font-mono text-muted-foreground">/{tenant.path}</td>
-                    <td className="p-6 align-middle font-semibold">{tenant.plan}</td>
+                    <td className="p-6 align-middle font-medium">{tenant.merchant_name}</td>
+                    <td className="p-6 align-middle font-mono text-muted-foreground">/{tenant.path_name}</td>
+                    <td className="p-6 align-middle font-semibold">{'Free'}</td>
                     <td className="p-6 align-middle">
-                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium uppercase tracking-wider ${getStatusColor(tenant.status)}`}>
+                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium uppercase tracking-wider ${getStatusColor(tenant.status || 'unknown')}`}>
                         {tenant.status}
                       </span>
                     </td>

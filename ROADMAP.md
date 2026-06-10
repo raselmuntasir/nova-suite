@@ -67,11 +67,12 @@ Nova Suite
 > **লক্ষ্য:** প্রতিটি মার্চেন্ট নিজের অ্যাকাউন্ট দিয়ে লগইন করবে
 
 #### 3.1 — Auth Pages
-- [ ] **Signup Page** — নাম, ইমেইল, পাসওয়ার্ড, শপের নাম (path_name)
-- [ ] **Login Page** — ইমেইল + পাসওয়ার্ড
-- [ ] **Supabase Auth** ইন্টিগ্রেশন (`signUp`, `signIn`, `signOut`)
-- [ ] **Auth Context** (`useAuth` hook) — পুরো অ্যাপে ইউজার স্টেট শেয়ার করা
-- [ ] **Protected Routes** — লগইন না করলে `/login`-এ রিডাইরেক্ট
+- [x] **Signup Page** — নাম, ইমেইল, পাসওয়ার্ড, শপের নাম (path_name)
+- [x] **Login Page** — ইমেইল + পাসওয়ার্ড
+- [x] Integrate authentication UI matching `social-login/login.html`
+- [x] Configure Supabase Auth Context (`useAuth`)
+- [x] Implement `ProtectedRoute` logic
+- [x] Separate login paths for Super Admins and Merchants/Admins (UI prepared)
 - [ ] Signup-এ auto `tenants` table-এ row তৈরি
 
 #### 3.2 — RLS শক্ত করা
@@ -84,17 +85,25 @@ Nova Suite
 ### 🔄 PHASE 4 — Feature Completion (ফিচার সম্পূর্ণ করা)
 > **লক্ষ্য:** সব UI অপশন কার্যকর করা
 
-#### 4.1 — Orders (OMS) সম্পূর্ণ করা
-- [ ] **New Order** Modal/Form — কাস্টমার তথ্য, পণ্য, ঠিকানা, কুরিয়ার
-- [ ] **Order Status Update** — Pending → Confirmed → Shipped → Delivered
-- [ ] **CSV Import** — Excel/CSV থেকে bulk order import
-- [ ] **Search & Filter** — অর্ডার নাম্বার, স্ট্যাটাস, তারিখ দিয়ে ফিল্টার
-- [ ] **Order Detail View** — প্রতিটি অর্ডারের বিস্তারিত মডাল
+#### 4.1 — Order Management System (OMS)
+- [x] **New Order Form (`CreateOrderPage.tsx`)**
+  - [x] কাস্টমার ডিটেইলস (নাম, মোবাইল, ঠিকানা, জেলা)
+  - [x] প্রডাক্ট সিলেকশন (searchable dropdown + table)
+  - [x] বিলিং সামারি (Subtotal, Discount, Shipping, Advance, Due)
+- [x] **All Orders View (`OrdersPage.tsx`)**
+  - [x] স্ট্যাটাস ভিত্তিক কালারফুল গ্রুপ কার্ড
+  - [x] অর্ডার লিস্ট টেবিল (Invoice ID, Name, Date, Status, Summary)
+  - [x] ফিল্টারিং সেকশন (Collapsible UI)
+- [x] **Order Detail View** — প্রতিটি অর্ডারের বিস্তারিত মডাল
 - [ ] **Pagination** — বড় অর্ডার লিস্টের জন্য
 
 #### 4.2 — Courier Integration (কুরিয়ার)
-- [ ] **CouriersPage** সম্পূর্ণ করা — API key সেভ/এডিট ফর্ম
-- [ ] **Pathao API** ইন্টিগ্রেশন — parcel book, tracking
+- [x] **Courier Config UI (`CouriersPage.tsx`)**
+  - [x] Steadfast, Pathao, RedX API keys setup UI
+  - [x] Global Courier Settings (Enable/Disable, Allow API sync)
+- [ ] Steadfast API Integration (Order booking & status sync)
+- [ ] Pathao API Integration
+- [ ] RedX API Integrationg
 - [ ] **Steadfast API** ইন্টিগ্রেশন — consignment create, tracking
 - [ ] **RedX API** ইন্টিগ্রেশন — parcel create, tracking
 - [ ] **Auto-book** — অর্ডার confirm হলে কুরিয়ারে auto consignment তৈরি

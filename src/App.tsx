@@ -1,26 +1,30 @@
 import { Routes, Route } from 'react-router-dom';
 
-// Placeholder Pages
-import TenantLayout from './components/layout/TenantLayout';
-import OrdersPage from './pages/tenant/OrdersPage';
-import CouriersPage from './pages/tenant/CouriersPage';
-import LandingPage from './pages/LandingPage';
+// Layout & Auth
+import AppLayout from './layout/AppLayout';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import LoginPage from './pages/auth/LoginPage';
 
-import AdminLayout from './components/layout/AdminLayout';
+// Admin Pages
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 
-// Placeholder Pages
-const TenantDashboardHome = () => <div className="text-2xl font-bold">Welcome to Dashboard</div>;
+// Tenant Pages
+import TenantDashboardPage from './pages/tenant/TenantDashboardPage';
+import OrdersPage from './pages/tenant/OrdersPage';
+import CreateOrderPage from './pages/tenant/CreateOrderPage';
+import CouriersPage from './pages/tenant/CouriersPage';
+
 const NotFound = () => <div className="p-8 text-center text-red-500"><h1 className="text-2xl">404 Not Found</h1></div>;
 
 function App() {
   return (
-    <div className="min-h-screen bg-background font-sans antialiased">
+    <div className="min-h-screen font-sans antialiased">
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         
         {/* Super Admin Dashboard Routes */}
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
           <Route index element={<AdminDashboardPage />} />
           <Route path="tenants" element={<AdminDashboardPage />} />
           <Route path="earnings" element={<AdminDashboardPage />} />
@@ -28,9 +32,10 @@ function App() {
         </Route>
         
         {/* Tenant Dashboard Routes */}
-        <Route path="/tenant/:tenantId" element={<TenantLayout />}>
-          <Route index element={<TenantDashboardHome />} />
+        <Route path="/tenant/:tenantId" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          <Route index element={<TenantDashboardPage />} />
           <Route path="orders" element={<OrdersPage />} />
+          <Route path="orders/new" element={<CreateOrderPage />} />
           <Route path="couriers" element={<CouriersPage />} />
         </Route>
         
