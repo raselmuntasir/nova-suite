@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   CheckCircle, Clock, Truck, Layers, Wallet,
   ChevronDown, Box, Hourglass, Tag, Info, PieChart, Globe, ArrowRight,

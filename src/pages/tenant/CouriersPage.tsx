@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronRight, Info } from 'lucide-react';
 
 const inputClass = "w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white/90 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-3 focus:ring-brand-500/10 focus:border-brand-400 dark:focus:border-brand-800 transition-all";
